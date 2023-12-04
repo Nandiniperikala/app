@@ -1,0 +1,65 @@
+application {
+    config {
+        baseName app
+        applicationType gateway
+        packageName com.medisure.app
+        authenticationType oauth2
+        serverPort 3001
+        databaseType no
+        prodDatabaseType no
+        logManagementType eck
+        serviceDiscoveryType eureka
+        clientFramework react
+    }
+}
+ application {
+    config {
+        baseName policies
+        applicationType microservice
+        packageName com.medisure.policies
+        authenticationType oauth2
+        serverPort 8090
+        databaseType sql
+        devDatabaseType postgresql
+        prodDatabaseType postgresql
+        logManagementType eck
+        serviceDiscoveryType eureka
+    }
+}
+ application {
+    config {
+        baseName validations
+        applicationType microservice
+        packageName com.medisure.validations
+        authenticationType oauth2
+        serverPort 8091
+        databaseType mongodb
+        logManagementType eck
+        serviceDiscoveryType eureka
+        blueprint [gomicro]
+    }
+}
+ 
+communication {
+    client "validations"
+    server "policies"
+    type "async"
+    framework "rabbitmq"
+}
+
+ 
+communication {
+    client "app"
+    server "policies"
+    type "sync"
+    framework "rest-api"
+}
+
+ 
+communication {
+    client "app"
+    server "validations"
+    type "sync"
+    framework "rest-api"
+}
+

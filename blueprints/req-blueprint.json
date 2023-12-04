@@ -1,0 +1,62 @@
+{
+    "projectName": "medisure",
+    "services": {
+        "0": {
+            "label": "app",
+            "applicationName": "app",
+            "clientFramework": "react",
+            "packageName": "com.medisure.app",
+            "serverPort": "3001",
+            "withExample": "false",
+            "applicationType": "gateway",
+            "serviceDiscoveryType": "eureka",
+            "authenticationType": "oauth2",
+            "logManagementType": "eck"
+        },
+        "1": {
+            "label": "policies",
+            "applicationName": "policies",
+            "applicationFramework": "java",
+            "packageName": "com.medisure.policies",
+            "serverPort": "8090",
+            "applicationType": "microservice",
+            "prodDatabaseType": "postgresql",
+            "serviceDiscoveryType": "eureka",
+            "authenticationType": "oauth2",
+            "logManagementType": "eck"
+        },
+        "2": {
+            "label": "validations",
+            "applicationName": "validations",
+            "applicationFramework": "gomicro",
+            "packageName": "com.medisure.validations",
+            "serverPort": "8091",
+            "applicationType": "microservice",
+            "prodDatabaseType": "mongodb",
+            "serviceDiscoveryType": "eureka",
+            "authenticationType": "oauth2",
+            "logManagementType": "eck"
+        }
+    },
+    "communications": {
+        "0": {
+            "client": "validations",
+            "server": "policies",
+            "type": "asynchronous",
+            "framework": "rabbitmq"
+        },
+        "1": {
+            "client": "app",
+            "server": "policies",
+            "type": "synchronous",
+            "framework": "rest-api"
+        },
+        "2": {
+            "client": "app",
+            "server": "validations",
+            "type": "synchronous",
+            "framework": "rest-api"
+        }
+    },
+    "projectId": "medisure-0hJ5H2aTD"
+}

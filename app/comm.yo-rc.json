@@ -1,0 +1,14 @@
+[
+  {
+    "client": "app",
+    "server": "policies",
+    "type": "sync",
+    "framework": "rest-api"
+  },
+  {
+    "client": "app",
+    "server": "validations",
+    "type": "sync",
+    "framework": "rest-api"
+  }
+]
